@@ -3,45 +3,123 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Foxia — Dein Feed. Dein Fuchs.</title>
-  <meta name="description" content="Foxia ist die KI-personalisierte News-App: lernt on-device aus deinem Leseverhalten, hyperlokal, privacy-first.">
+  <title>Foxia — Dein Feed. Dein Fuchs. Jetzt im Play Store!</title>
+  <meta name="description" content="Foxia ist live! Die KI-News-App, die auf deinem Gerät lernt, was dich interessiert. Hyperlokal für die Schweiz, ehrlich bei Paywalls, privacy-first. Jetzt kostenlos für Android laden.">
   <style>
-    :root { --orange: #F15A24; --ink: #161616; --muted: #71675F; }
+    :root { --orange: #F15A24; --orange-soft: #FDEBE3; --ink: #161616; --muted: #71675F; --card: #FAF7F5; --border: #EFE7E2; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: #fff; }
-    .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px; text-align: center; }
-    .logo { font-size: 56px; font-weight: 900; letter-spacing: 2px; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 40px 24px; text-align: center; }
+
+    .live-pill { display: inline-flex; align-items: center; gap: 8px; background: var(--orange-soft); color: var(--orange); border: 1px solid var(--orange); border-radius: 999px; padding: 8px 18px; font-weight: 700; font-size: 15px; }
+    .live-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--orange); animation: pulse 1.6s ease-in-out infinite; }
+    @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.35); opacity: .6; } }
+
+    .logo { font-size: 60px; font-weight: 900; letter-spacing: 2px; margin-top: 28px; }
     .logo .fox { color: var(--orange); }
-    h1 { font-size: 28px; margin: 24px 0 12px; }
-    p.lead { font-size: 18px; color: var(--muted); line-height: 1.6; }
-    .features { text-align: left; margin: 36px auto; max-width: 480px; }
-    .features li { margin-bottom: 12px; line-height: 1.5; }
-    .badge { display: inline-block; background: var(--orange); color: #fff; border-radius: 12px; padding: 12px 24px; font-weight: 700; text-decoration: none; margin-top: 16px; }
+    h1 { font-size: 30px; margin: 18px 0 10px; }
+    p.lead { font-size: 18px; color: var(--muted); line-height: 1.65; max-width: 560px; margin: 0 auto; }
+
+    .cta { display: inline-block; background: var(--orange); color: #fff; border-radius: 14px; padding: 16px 34px; font-weight: 800; font-size: 18px; text-decoration: none; margin-top: 26px; box-shadow: 0 6px 20px rgba(241, 90, 36, .35); transition: transform .12s ease; }
+    .cta:hover { transform: translateY(-2px); }
+    .cta-sub { display: block; margin-top: 12px; font-size: 14px; color: var(--muted); }
+
+    .stats { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 40px 0 8px; }
+    .stat { background: var(--card); border: 1px solid var(--border); border-radius: 999px; padding: 8px 18px; font-size: 14.5px; font-weight: 600; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 28px 0 8px; text-align: left; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 20px; }
+    .card .emoji { font-size: 26px; }
+    .card h3 { font-size: 16.5px; margin: 10px 0 6px; }
+    .card p { font-size: 14.5px; color: var(--muted); line-height: 1.55; }
+
+    .closer { margin-top: 44px; }
+    .closer h2 { font-size: 22px; margin-bottom: 8px; }
+    .closer p { color: var(--muted); }
+
     footer { margin-top: 64px; font-size: 14px; color: var(--muted); }
     footer a { color: var(--orange); text-decoration: none; margin: 0 8px; }
+
     @media (prefers-color-scheme: dark) {
-      body { background: #0C0C0D; color: #F5F3F1; }
-      :root { --ink: #F5F3F1; --muted: #A39C95; }
+      body { background: #0C0C0D; }
+      :root { --ink: #F5F3F1; --muted: #A39C95; --card: #161314; --border: #2A2422; --orange-soft: #2A1810; }
+      body { color: var(--ink); }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
+
+    <span class="live-pill"><span class="live-dot"></span> Der Fuchs ist los — jetzt im Google Play Store!</span>
+
     <div class="logo">F<span class="fox">🦊</span>XIA</div>
     <h1>Dein Feed. Dein Fuchs.</h1>
-    <p class="lead">Die KI-personalisierte News-App für Android &amp; iOS.<br>
-    Lernt on-device aus deinem Leseverhalten — privacy-first.</p>
-    <ul class="features">
-      <li>🧠 <strong>Lernender Feed:</strong> je mehr du liest, desto treffender die Auswahl</li>
-      <li>📍 <strong>Hyperlokal:</strong> echte Lokalzeitungen aus deiner Region</li>
-      <li>📖 <strong>Lesemodus:</strong> Artikel ohne Werbe-Overload</li>
-      <li>🔒 <strong>Privacy by Design:</strong> deine Daten bleiben auf deinem Gerät</li>
-    </ul>
-    <span class="badge">Bald im Google Play Store</span>
+    <p class="lead">Schluss mit Einheitsbrei: Foxia lernt direkt auf deinem Gerät, was dich
+    wirklich interessiert — und baut dir daraus deinen persönlichen News-Feed.
+    Ohne Klickfallen, ohne Werbe-Tracking, ohne Lärm.</p>
+
+    <a class="cta" href="https://play.google.com/store/apps/details?id=com.foxia.app">🦊 Jetzt kostenlos laden</a>
+    <span class="cta-sub">Für Android · komplett kostenlos · ohne Konto nutzbar · iOS in Vorbereitung</span>
+
+    <div class="stats">
+      <span class="stat">📰 Über 60 Quellen</span>
+      <span class="stat">🌍 4 Sprachen</span>
+      <span class="stat">🎯 100+ Themen</span>
+      <span class="stat">🇨🇭 Zuhause in der Schweiz</span>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <span class="emoji">🧠</span>
+        <h3>Ein Feed, der dich versteht</h3>
+        <p>Die Foxia-KI lernt aus deinem Leseverhalten — was du öffnest, wie lange du
+        liest, was du wegwischst. Und sie sagt dir sogar, <em>warum</em> ein Artikel
+        für dich ausgewählt wurde.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">📍</span>
+        <h3>Lokal wie keine andere</h3>
+        <p>Aargau, Zürich, Basel, St.&nbsp;Gallen, Luzern, Solothurn und mehr: echte
+        Lokal-News aus deiner Region — auf Wunsch automatisch per Standort.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">⭐</span>
+        <h3>Top-Storys auf einen Blick</h3>
+        <p>Was beschäftigt gerade viele Medien? Foxia bündelt die grossen Geschichten
+        quellenübergreifend — du siehst sofort, wie breit ein Thema aufgegriffen wird.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">📖</span>
+        <h3>Ruhiger Lesemodus</h3>
+        <p>Artikel in aufgeräumter Ansicht ohne Bannerflut — mit geschätzter Lesezeit
+        und sauberen Bildern. Lesen wie früher, nur schöner.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">🔓</span>
+        <h3>Ehrlich bei Paywalls</h3>
+        <p>Bezahlartikel sind klar markiert, bevor du klickst. Deine eigenen Abos
+        siehst du immer — den Rest blendest du auf Wunsch einfach aus.</p>
+      </div>
+      <div class="card">
+        <span class="emoji">🔒</span>
+        <h3>Privacy first. Wirklich.</h3>
+        <p>Dein Leseverhalten und dein KI-Profil bleiben auf deinem Gerät. Kein
+        Werbe-Tracking, keine Datenweitergabe — ein Konto brauchst du nur für den
+        Geräte-Sync.</p>
+      </div>
+    </div>
+
+    <div class="closer">
+      <h2>Neugierig, was dein Fuchs dir zeigt?</h2>
+      <p>In zwei Minuten eingerichtet — Interessen wählen, loslesen, staunen.</p>
+      <a class="cta" href="https://play.google.com/store/apps/details?id=com.foxia.app">Foxia im Play Store öffnen</a>
+    </div>
+
     <footer>
       <a href="impressum.html">Impressum</a> ·
       <a href="datenschutz.html">Datenschutz</a> ·
-      <a href="agb.html">Nutzungsbedingungen</a><br><br>
+      <a href="agb.html">Nutzungsbedingungen</a> ·
+      <a href="konto-loeschen.html">Konto löschen</a><br><br>
       © 2026 Foxia · Kontakt: info@foxia.ch
     </footer>
   </div>
