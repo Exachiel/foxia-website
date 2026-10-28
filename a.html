@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <title>Foxia — Beitrag öffnen</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; color: #161616; background: #fff; line-height: 1.55; }
+    .wrap { max-width: 560px; margin: 0 auto; padding: 40px 24px; text-align: center; }
+    .logo { font-size: 28px; font-weight: 900; color: #F15A24; letter-spacing: 1px; margin-bottom: 18px; }
+    h1 { font-size: 21px; line-height: 1.3; margin-bottom: 6px; }
+    .source { color: #71675F; font-size: 14px; margin-bottom: 26px; }
+    a.btn { display: block; padding: 14px 18px; border-radius: 12px; font-weight: 700; text-decoration: none; margin-bottom: 12px; font-size: 16px; }
+    .primary { background: #F15A24; color: #fff; }
+    .secondary { border: 1.5px solid #F15A24; color: #F15A24; }
+    .store { color: #71675F; font-size: 14px; margin-top: 22px; }
+    .store a { color: #F15A24; }
+    @media (prefers-color-scheme: dark) { body { background: #0C0C0D; color: #F5F3F1; } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">FOXIA</div>
+  <h1 id="title">Beitrag</h1>
+  <p class="source" id="source"></p>
+  <a class="btn primary" id="app" href="#">In Foxia öffnen</a>
+  <a class="btn secondary" id="web" href="#" rel="noopener">Artikel beim Verlag lesen</a>
+  <p class="store">Noch kein Foxia? <a href="https://play.google.com/store/apps/details?id=com.foxia.app">Gratis im Play Store</a></p>
+</div>
+<script>
+  (function () {
+    var p = new URLSearchParams(location.search);
+    var u = p.get('u') || '';
+    var t = p.get('t') || 'Beitrag';
+    var s = p.get('s') || '';
+    if (!/^https?:\/\//.test(u)) u = 'https://www.foxia.ch/';
+    document.getElementById('title').textContent = t;
+    document.getElementById('source').textContent = s ? 'Quelle: ' + s : '';
+    document.getElementById('web').href = u;
+    // Deep Link in die App (Schema foxia://). Ist die App nicht installiert,
+    // passiert nichts — der Nutzer tippt dann «Artikel beim Verlag lesen».
+    var deep = 'foxia://open?u=' + encodeURIComponent(u) + '&t=' + encodeURIComponent(t) + '&s=' + encodeURIComponent(s);
+    document.getElementById('app').href = deep;
+    var ua = navigator.userAgent || '';
+    if (/Android|iPhone|iPad/i.test(ua)) {
+      // Automatischer Versuch; bleibt die Seite sichtbar, ist Foxia nicht installiert
+      setTimeout(function () { location.href = deep; }, 300);
+    }
+  })();
+</script>
+</body>
+</html>
