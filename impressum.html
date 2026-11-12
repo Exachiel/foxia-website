@@ -3,22 +3,42 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0A0A0E">
+  <meta name="color-scheme" content="dark">
   <link rel="icon" type="image/png" href="favicon.png">
   <title>Impressum — Foxia</title>
   <style>
+    /* Gleiche Farben und Schriften wie die Startseite. Keine externen Anfragen. */
+    @media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } }
+    :root { --bg: #0A0A0E; --line: #2B2B36; --ink: #F4F1EC; --ink2: #ADA79F; --fox: #FF6B35; color-scheme: dark; }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; color: #161616; background: #fff; line-height: 1.65; }
-    .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px; }
-    h1 { font-size: 26px; margin-bottom: 8px; }
-    h2 { font-size: 19px; margin: 28px 0 10px; }
-    p, li { font-size: 16px; margin-bottom: 10px; color: #333; }
-    ul { padding-left: 22px; }
-    .muted { color: #71675F; font-size: 14px; }
-    a { color: #F15A24; }
-    @media (prefers-color-scheme: dark) { body { background: #0C0C0D; color: #F5F3F1; } p, li { color: #ccc; } }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+    .top { display: flex; justify-content: space-between; align-items: flex-start; max-width: 720px; margin: 0 auto; padding: 14px 24px 0; }
+    .logo { display: inline-flex; align-items: flex-start; font: 900 1.55rem/1 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; letter-spacing: .02em; color: var(--ink); text-decoration: none; padding: .55rem 0 1rem; view-transition-name: foxia-logo; }
+    .logo svg { flex: none; width: 1.44em; height: 1.18em; margin: .19em -.83em 0 .04em; position: relative; z-index: 1; color: var(--fox); }
+    .back { display: inline-flex; align-items: center; min-height: 2.75rem; margin-top: .2rem; padding: 0 1.05rem; border: 1.5px solid rgba(244, 241, 236, .45); border-radius: 999px; font-size: .88rem; font-weight: 700; color: var(--ink); text-decoration: none; }
+    .back:hover { border-color: var(--fox); color: var(--fox); }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 36px 24px 72px; }
+    h1 { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -.03em; margin-bottom: 10px; text-wrap: balance; }
+    h2 { font-size: 1.2rem; font-weight: 700; margin: 34px 0 10px; }
+    p, li { font-size: 1rem; margin-bottom: 10px; color: #D6D1CA; }
+    ul, ol { padding-left: 22px; }
+    strong { color: var(--ink); }
+    .muted { color: var(--ink2); font-size: .9rem; }
+    .wrap a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--fox); text-decoration-thickness: 2px; text-underline-offset: .22em; }
+    .wrap a:hover { color: var(--fox); }
+    .box { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; margin: 14px 0; background: #111117; }
+    .box > :last-child, .box li:last-child { margin-bottom: 0; }
+    :focus-visible { outline: 3px solid var(--fox); outline-offset: 3px; border-radius: .3rem; }
   </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="fox" viewBox="0 0 300 245.6"><path fill="currentColor" d="M78.6 0L80.8 0.6L82.2 5.4L80.4 28.4L77.4 38.1L80.6 49.2L80 57.2L89.5 70.5L94.5 73.5L94.5 75.6L91.5 81.2L84 85.6L58.8 84.4L51.6 85.2L43.7 90.3L43.7 97.7L46.7 97.1L55.8 90.9L77.8 91.9L92.7 90.9L100.5 78.6L101.9 69.3L104 67.3L116.5 69.1L148.7 70.5L167.6 81.4L187.6 107L195.4 126.9L203.1 137.8L213.6 149.1L227.5 157.4L235.7 160.4L269.8 164L289.3 175.9L295.6 184.2L300 198.5L299.2 207.1L292.1 217.4L285.7 221.2L283.1 221.2L281.3 211.8L278.6 208.1L273.8 205.1L234.9 207.9L197.4 193L188.2 182.3L180.7 171.1L176.9 160L176.1 139.8L172.9 132.6L165.8 170.7L177.9 191.6L181.9 224L180.5 227.1L176.9 228.9L161.2 228.7L157.4 226.7L155.3 223.8L156.5 220L164 216.2L158.6 192L130.4 157.8L123.1 136.8L120.9 135.8L85.8 155.1L67.9 162L61.2 202.7L62.5 223.2L61.2 233.5L53.8 238.1L50.6 243.8L32.4 245.6L28.4 243.2L27.4 240.4L29.4 234.3L36.1 231.7L37.5 229.1L43.9 194.4L28.2 147.9L2.4 105L0 88.2L12.9 46.9L35.3 5.2L37.1 4L41.7 4.4L51.2 17.1L53.4 17.7ZM117.7 144.3L119.7 145.9L127.9 164.6L128.9 170.2L127.9 176.3L108.4 208.9L101.5 218L90.5 218.6L85.6 217.6L82.2 215.2L82.6 213.4L87 208.7L94.9 208.1L106 177.9L105.6 175.1L95.1 169.2L89.7 164L88.7 161.4Z"/></symbol></defs></svg>
+<header class="top">
+  <a class="logo" href="index.html" aria-label="Foxia, zur Startseite"><span aria-hidden="true">F</span><svg aria-hidden="true"><use href="#fox"/></svg><span aria-hidden="true">XIA</span></a>
+  <a class="back" href="index.html">Zur Startseite</a>
+</header>
 <div class="wrap">
   <h1>Impressum</h1>
   <p class="muted">Stand: Juli 2026</p>
