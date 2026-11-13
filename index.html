@@ -13,7 +13,7 @@
 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Foxia – News ohne Lärm</title>
+<title>Foxia – News-App ohne Lärm | Schweiz, Deutschland, Österreich</title>
 <meta name="description" content="Foxia ist die News-App für die Schweiz, Deutschland und Österreich: News aus deiner Region, ein Lesemodus ohne Werbung, und dein Leseprofil bleibt auf deinem Handy. Gratis.">
 <meta name="theme-color" content="#0A0A0E">
 <meta name="color-scheme" content="dark">
@@ -27,6 +27,15 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://www.foxia.ch/">
 <link rel="icon" type="image/png" href="favicon.png">
+<!-- Angaben für Suchmaschinen (löst keine Anfrage aus). Keine Bewertungen erfinden.
+     Sobald die iOS-App live ist: "operatingSystem" auf "Android, iOS" ändern. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebSite","@id":"https://www.foxia.ch/#website","url":"https://www.foxia.ch/","name":"Foxia","inLanguage":"de-CH","publisher":{"@id":"https://www.foxia.ch/#org"}},
+{"@type":"Organization","@id":"https://www.foxia.ch/#org","name":"Foxia","url":"https://www.foxia.ch/","logo":"https://www.foxia.ch/favicon.png"},
+{"@type":"MobileApplication","@id":"https://www.foxia.ch/#app","name":"Foxia News","alternateName":"Foxia","description":"News-App für die Schweiz, Deutschland und Österreich: News aus deiner Region, ein Lesemodus ohne Werbung, und dein Leseprofil bleibt auf deinem Handy.","url":"https://www.foxia.ch/","image":"https://www.foxia.ch/og.png","operatingSystem":"Android","applicationCategory":"NewsApplication","inLanguage":"de","installUrl":"https://play.google.com/store/apps/details?id=com.foxia.app","offers":{"@type":"Offer","price":"0","priceCurrency":"CHF"},"publisher":{"@id":"https://www.foxia.ch/#org"}}
+]}
+</script>
 
 <script>
 /* Geräte-Erkennung: setzt nur ein Attribut am <html>. Ohne JS oder bei Fehlern
@@ -646,7 +655,7 @@ html[data-platform="android"] .phone__home{display:block;width:5em;height:.2em;b
 
   <div class="chaos">
     <!-- Die Wand aus Lärm ist reine Dekoration: für Vorlesehilfen und Tastatur unsichtbar. -->
-    <div class="wall" aria-hidden="true">
+    <div class="wall" aria-hidden="true" data-nosnippet>
       <div class="heads">
         <div class="row r1"><div class="row__in"><span>SCHOCK-VIDEO: WAS DIESER DACKEL DANN TAT, GLAUBT DIR NIEMAND ★ PROMI-PAAR GETRENNT: JETZT SPRICHT DER GÄRTNER ★ 7 ANZEICHEN, DASS DEIN NACHBAR DICH BEOBACHTET ★</span><span>SCHOCK-VIDEO: WAS DIESER DACKEL DANN TAT, GLAUBT DIR NIEMAND ★ PROMI-PAAR GETRENNT: JETZT SPRICHT DER GÄRTNER ★ 7 ANZEICHEN, DASS DEIN NACHBAR DICH BEOBACHTET ★</span></div></div>
         <div class="row r2 rev"><div class="row__in"><span>+++ EIL +++ Minister äussert sich +++ EIL +++ Aktie bewegt sich +++ EIL +++ Wetter findet statt +++ EIL +++ Experte ist besorgt +++ EIL +++ Es ist Dienstag</span><span>+++ EIL +++ Minister äussert sich +++ EIL +++ Aktie bewegt sich +++ EIL +++ Wetter findet statt +++ EIL +++ Experte ist besorgt +++ EIL +++ Es ist Dienstag</span></div></div>
@@ -799,7 +808,7 @@ html[data-platform="android"] .phone__home{display:block;width:5em;height:.2em;b
     </fieldset>
 
     <figure class="phone-wrap" aria-label="Beispielansicht der Foxia-App">
-      <div class="phone">
+      <div class="phone" data-nosnippet>
         <i class="phone__side" style="--z:4"></i><i class="phone__side" style="--z:3"></i><i class="phone__side" style="--z:2"></i><i class="phone__side" style="--z:1"></i>
         <div class="phone__body">
           <span class="phone__cam"></span>
