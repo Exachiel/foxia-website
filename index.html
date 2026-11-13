@@ -163,6 +163,23 @@ html[data-platform="ios"][data-ios="soon"] .store--ios.is-soon{order:-1}
   .hero{padding-top:7rem;padding-bottom:7.4rem;gap:.8rem}
   .hero .display{font-size:clamp(1.8rem,6.6vw,3.4rem)}
 }
+/* Sehr flache, breite Fenster (stark vergrösserte Ansicht, Handy quer): Der Scroll-Knopf
+   rückt neben die Store-Buttons, damit ihn die Cookie-Leiste nie verdeckt. */
+@media (max-height:36rem) and (min-width:48rem){
+  .hero{padding-top:4.8rem;padding-bottom:6rem;gap:.6rem;grid-template-columns:auto 1fr;column-gap:.7rem;align-items:center}
+  .hero > *{grid-column:1 / -1}
+  .hero > .stores{grid-column:1}
+  .hero > .cue{grid-column:2;justify-self:start;font-size:.86rem;gap:.5rem;padding-right:.9rem}
+  .hero__note{display:none}
+}
+/* Handy quer und ähnlich flache Fenster: Die untere Cookie-Leiste entfällt, sonst bliebe kein Platz für den Knopf. */
+@media (max-height:27rem){
+  .n-cookie.ck1{display:none}
+  .hero__eyebrow,.hero__note{display:none}
+  .hero{padding-top:4.2rem;padding-bottom:1.2rem}
+  .hero .display{font-size:clamp(1.6rem,4.4vw,2.4rem)}
+}
+@media (max-height:22rem){.hero .lead{display:none}}
 
 /* ---- Schlagzeilen-Flut ---- */
 .heads{position:absolute;inset:0;z-index:1;display:grid;grid-template-rows:repeat(9,1fr)}
