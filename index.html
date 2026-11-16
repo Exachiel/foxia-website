@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" data-ios="soon">
+<html lang="de" data-ios="live">
 <head>
 <!--
   FOXIA – Startseite. Eine Datei, kein Build-Schritt, keine externen Anfragen.
@@ -28,12 +28,12 @@
 <link rel="canonical" href="https://www.foxia.ch/">
 <link rel="icon" type="image/png" href="favicon.png">
 <!-- Angaben für Suchmaschinen (löst keine Anfrage aus). Keine Bewertungen erfinden.
-     Sobald die iOS-App live ist: "operatingSystem" auf "Android, iOS" ändern. -->
+     App-Store-Links brauchen ein Land (/ch/): Ohne Land sucht Apple im US-Store, dort gibt es Foxia nicht (404). -->
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"WebSite","@id":"https://www.foxia.ch/#website","url":"https://www.foxia.ch/","name":"Foxia","inLanguage":"de-CH","publisher":{"@id":"https://www.foxia.ch/#org"}},
 {"@type":"Organization","@id":"https://www.foxia.ch/#org","name":"Foxia","url":"https://www.foxia.ch/","logo":"https://www.foxia.ch/favicon.png"},
-{"@type":"MobileApplication","@id":"https://www.foxia.ch/#app","name":"Foxia News","alternateName":"Foxia","description":"News-App für die Schweiz, Deutschland und Österreich: News aus deiner Region, ein Lesemodus ohne Werbung, und dein Leseprofil bleibt auf deinem Handy.","url":"https://www.foxia.ch/","image":"https://www.foxia.ch/og.png","operatingSystem":"Android","applicationCategory":"NewsApplication","inLanguage":"de","installUrl":"https://play.google.com/store/apps/details?id=com.foxia.app","offers":{"@type":"Offer","price":"0","priceCurrency":"CHF"},"publisher":{"@id":"https://www.foxia.ch/#org"}}
+{"@type":"MobileApplication","@id":"https://www.foxia.ch/#app","name":"Foxia News","alternateName":"Foxia","description":"News-App für die Schweiz, Deutschland und Österreich: News aus deiner Region, ein Lesemodus ohne Werbung, und dein Leseprofil bleibt auf deinem Handy.","url":"https://www.foxia.ch/","image":"https://www.foxia.ch/og.png","operatingSystem":"Android, iOS","downloadUrl":["https://play.google.com/store/apps/details?id=com.foxia.app","https://apps.apple.com/ch/app/foxia-news/id6827222455"],"applicationCategory":"NewsApplication","inLanguage":"de","installUrl":"https://play.google.com/store/apps/details?id=com.foxia.app","offers":{"@type":"Offer","price":"0","priceCurrency":"CHF"},"publisher":{"@id":"https://www.foxia.ch/#org"}}
 ]}
 </script>
 
@@ -717,7 +717,7 @@ html[data-platform="android"] .phone__home{display:block;width:5em;height:.2em;b
              (svg + span) ersetzen durch:
              <img class="store__img" src="badge-app-store.svg" alt="Laden im App Store">
              und am <a> zusätzlich style="padding:0;border:0;background:none" setzen. -->
-        <a class="store store--ios is-live" href="https://apps.apple.com/app/id6827222455" rel="noopener">
+        <a class="store store--ios is-live" href="https://apps.apple.com/ch/app/foxia-news/id6827222455" rel="noopener">
           <svg class="store__glyph" aria-hidden="true"><use href="#i-ios"/></svg>
           <span class="store__txt"><small>Laden im</small><b>App Store</b></span>
         </a>
@@ -933,7 +933,7 @@ html[data-platform="android"] .phone__home{display:block;width:5em;height:.2em;b
       <h2 class="display">Hol dir den Fuchs.</h2>
       <div class="stores">
         <!-- STORE-LINK iOS (BADGE-PLATZHALTER: siehe Hinweis im Hero) -->
-        <a class="store store--ios is-live" href="https://apps.apple.com/app/id6827222455" rel="noopener">
+        <a class="store store--ios is-live" href="https://apps.apple.com/ch/app/foxia-news/id6827222455" rel="noopener">
           <svg class="store__glyph" aria-hidden="true"><use href="#i-ios"/></svg>
           <span class="store__txt"><small>Laden im</small><b>App Store</b></span>
         </a>
@@ -976,6 +976,12 @@ html[data-platform="android"] .phone__home{display:block;width:5em;height:.2em;b
 (function(){
   'use strict';
   var d=document,wall=d.querySelector('.wall');
+
+  /* ---- 0  App-Store-Link ins Land des Besuchers lenken (ohne Skript: Schweiz) ---- */
+  try{
+    var lg=String(navigator.language||'').toLowerCase(),cc=/-de$/.test(lg)?'de':/-at$/.test(lg)?'at':/^mk\b|-mk$/.test(lg)?'mk':'';
+    if(cc)d.querySelectorAll('a.store--ios').forEach(function(a){a.href=a.href.replace('/ch/app/','/'+cc+'/app/')});
+  }catch(e){}
 
   /* ---- 1  Pop-ups, die sich vermehren ---- */
   if(wall){
