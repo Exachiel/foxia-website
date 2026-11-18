@@ -309,7 +309,7 @@ html[data-platform="ios"][data-ios="soon"] .store--ios.is-soon{order:-1}
 .sweep{max-width:72rem;margin:2rem auto 0}
 .sweep__line{display:none}
 .sweep__fox{width:auto;height:6rem;color:var(--fox)}
-.hud{display:none}
+.hud,.nudge{display:none}
 @media (min-width:56rem){
   .calm__in{grid-template-columns:1fr 1fr;align-items:center;gap:clamp(2rem,6vw,6rem)}
   .read{order:0}
@@ -532,6 +532,13 @@ html[data-platform="android"] .phone__home{display:block;width:5em;height:.2em;b
   .hud__list li:nth-child(2)::after{animation-range:contain 26% contain 37%}
   .hud__list li:nth-child(3)::after{animation-range:contain 38% contain 50%}
   .hud__list li:nth-child(4)::after{animation-range:contain 50% contain 74%}
+
+  /* Randnotiz: Wer mitten in der Banner-Flut stehen bleibt, bekommt nach kurzer Zeit den Hinweis weiterzuscrollen.
+     Ein- und ausgeblendet wird sie vom Skript (Klasse is-on). */
+  .nudge{display:inline-flex;align-items:center;gap:.55rem;position:absolute;z-index:4;left:50%;bottom:1.1rem;translate:-50% 0;max-width:calc(100% - 2*var(--pad));padding:.3rem 1rem .3rem .34rem;border:1.5px solid var(--fox);border-radius:999px;background:rgba(10,10,14,.94);box-shadow:0 .5rem 1.6rem rgba(0,0,0,.55);color:var(--ink);font:700 .9rem/1.2 var(--sans);text-decoration:none;white-space:nowrap;opacity:0;visibility:hidden;transform:translateY(.6rem);transition:opacity .3s,transform .3s,visibility 0s .3s}
+  .nudge.is-on{opacity:1;visibility:visible;transform:none;transition:opacity .3s,transform .3s}
+  .nudge .cue__arrow{width:1.8rem;height:1.8rem;padding:.36rem}
+  @media (max-width:21.5rem){.nudge{font-size:.8rem}}
 
   /* ---------- Szene 3 + 4 ----------
      Auf sehr niedrigen Handy-Bildschirmen (unter 600 px Höhe) bleibt hier die
@@ -766,6 +773,12 @@ html[data-platform="android"] .phone__home{display:block;width:5em;height:.2em;b
     <div class="hud__row"><span>Rauschen</span><span class="hud__bar"><i></i></span><span class="hud__num"></span></div>
     <ul class="hud__list"><li>Cookie-Leisten</li><li>Pop-ups</li><li>Werbebanner</li><li>Schlagzeilen-Flut</li></ul>
   </div>
+
+  <!-- Randnotiz: erscheint nur, wenn jemand mitten in der Banner-Flut stehen bleibt (siehe Skript, Teil 2) -->
+  <a class="nudge" href="#signal" aria-hidden="true" tabindex="-1">
+    <svg class="cue__arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v13M6.5 12.5 12 18l5.5-5.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Scroll weiter: Der Fuchs räumt auf</span>
+  </a>
 
 </div>
 </section>
@@ -1033,7 +1046,7 @@ html[data-platform="android"] .phone__home{display:block;width:5em;height:.2em;b
           Ohne Scroll-Animation oder bei reduzierter Bewegung springt der Link normal. ---- */
   var cue=d.querySelector('.cue'),noise=d.querySelector('.noise'),root=d.documentElement;
   if(cue&&noise&&window.CSS&&CSS.supports&&CSS.supports('animation-timeline: view()')&&window.matchMedia&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&window.requestAnimationFrame){
-    cue.addEventListener('click',function(e){
+    var ride=function(e){
       e.preventDefault();
       var from=window.pageYOffset,to=noise.offsetTop+(noise.offsetHeight-window.innerHeight)*.9,t0=null,DUR=7000,stopped=false;
       if(to<=from)return;
@@ -1048,7 +1061,25 @@ html[data-platform="android"] .phone__home{display:block;width:5em;height:.2em;b
         window.scrollTo(0,from+(to-from)*ease);
         if(k<1)requestAnimationFrame(step);else stop();
       });
-    });
+    };
+    cue.addEventListener('click',ride);
+
+    /* Randnotiz: Bleibt jemand 2,5 Sekunden mitten in der Banner-Flut stehen, erscheint der Hinweis
+       weiterzuscrollen. Beim nächsten Scrollen verschwindet er wieder. Ein Klick fährt die Szene zu Ende. */
+    var nudge=d.querySelector('.nudge'),idle=0;
+    if(nudge){
+      nudge.addEventListener('click',ride);
+      window.addEventListener('scroll',function(){
+        nudge.classList.remove('is-on');clearTimeout(idle);
+        idle=setTimeout(function(){
+          var span=noise.offsetHeight-window.innerHeight,p=span>0?(window.pageYOffset-noise.offsetTop)/span:0;
+          /* Solange die untere Cookie-Leiste noch im Bild ist, sitzt die Notiz direkt darüber statt darauf */
+          var ck=d.querySelector('.ck1'),r=ck?ck.getBoundingClientRect():null,up=r&&r.height&&r.top<window.innerHeight?window.innerHeight-r.top:0;
+          nudge.style.bottom=up>0?Math.round(up+10)+'px':'';
+          nudge.classList.toggle('is-on',p>.07&&p<.72);
+        },2500);
+      },{passive:true});
+    }
   }
 
   /* ---- 3  Regionen-Wähler im Handy (Beispielinhalte) ---- */
